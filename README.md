@@ -1,5 +1,5 @@
 # Detect Face Emotions Using CNN
-Machine Learning project to get a better understanding of how CNN works.
+Machine Learning project - done through the semester in a group of 3 members.
 
 During this project I got familiar with: 
 - Training dataset.
