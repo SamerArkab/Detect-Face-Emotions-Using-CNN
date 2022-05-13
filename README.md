@@ -7,4 +7,4 @@ While working on this project I got familiar with:
 - The Convolutional \ MaxPooling layers and how the data of the image is compiled in the finish process to form the output.
 - And more!
 
-(*) Left the "train_model.py" file, but the data set to train is not attached (FER2013).
+(*) Kept the "train_model.py" file, but the data set to train is not attached (FER2013).
