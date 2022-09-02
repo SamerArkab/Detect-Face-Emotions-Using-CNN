@@ -8,6 +8,14 @@ Created on Wed Jun  2 18:19:35 2021
 import os
 import shutil
 
+import matplotlib.pyplot as plt
+
+from keras.layers import *
+from keras.models import Sequential
+from keras.preprocessing.image import ImageDataGenerator
+from keras import regularizers
+
+
 PATH = 'data/'
 
 train_count = 0
@@ -30,65 +38,63 @@ print("total test images:", test_count)
 
 names = os.listdir("data/train/surprised")
 for name in names:
-  new = name.replace('im', 'img')
-  os.rename(os.path.join("data/train/surprised", name), os.path.join("data/train/surprised", new))
+    new = name.replace('im', 'img')
+    os.rename(os.path.join("data/train/surprised", name), os.path.join("data/train/surprised", new))
 
 images = os.listdir("data/test/surprised")
 for i in images:
-  shutil.copy(os.path.join("data/test/surprised", i), "data/train/surprised")
-  if len(os.listdir("data/train/surprised")) == 4000:
-    break
+    shutil.copy(os.path.join("data/test/surprised", i), "data/train/surprised")
+    if len(os.listdir("data/train/surprised")) == 4000:
+        break
 
 names = os.listdir("data/train/disgusted")
 for name in names:
-  new = name.replace('im', 'img')
-  os.rename(os.path.join("data/train/disgusted", name), os.path.join("data/train/disgusted", new))
+    new = name.replace('im', 'img')
+    os.rename(os.path.join("data/train/disgusted", name), os.path.join("data/train/disgusted", new))
 
 images = os.listdir("data/test/disgusted")
 for i in images:
-  shutil.copy(os.path.join("data/test/disgusted", i), "data/train/disgusted")
+    shutil.copy(os.path.join("data/test/disgusted", i), "data/train/disgusted")
 
 names = os.listdir("data/train/angry")
 for name in names:
-  new = name.replace('im', 'img')
-  os.rename(os.path.join("data/train/angry", name), os.path.join("data/train/angry", new))
+    new = name.replace('im', 'img')
+    os.rename(os.path.join("data/train/angry", name), os.path.join("data/train/angry", new))
 
 images = os.listdir("data/test/angry")
 for i in images:
-  shutil.copy(os.path.join("data/test/angry", i), "data/train/angry")
-  if len(os.listdir("data/train/angry")) == 4000:
-    break
-
+    shutil.copy(os.path.join("data/test/angry", i), "data/train/angry")
+    if len(os.listdir("data/train/angry")) == 4000:
+        break
 
 # Deleting pics from all categories with more than 4000 pics(train)
 
 del_list = []
 
 for cl in classes:
-  l = os.listdir(os.path.join("data/train", cl))
-  if len(l) > 4000:
-    for i in l[4000:]:
-      del_list.append(os.path.join("data/train", cl, i))
+    train_path = os.listdir(os.path.join("data/train", cl))
+    if len(train_path) > 4000:
+        for i in train_path[4000:]:
+            del_list.append(os.path.join("data/train", cl, i))
 print(len(del_list))
 
 for i in del_list:
-  os.remove(i)
-  
-  
+    os.remove(i)
+
 # Deleting pics from all categories with more than 1000 pics(test)
 
 del_list = []
 
 for cl in classes:
-  l = os.listdir(os.path.join("data/test", cl))
-  if len(l) > 1000:
-    for i in l[1000:]:
-      del_list.append(os.path.join("data/test", cl, i))
+    test_path = os.listdir(os.path.join("data/test", cl))
+    if len(test_path) > 1000:
+        for i in test_path[1000:]:
+            del_list.append(os.path.join("data/test", cl, i))
 print(len(del_list))
 
 for i in del_list:
-  os.remove(i)
-  
+    os.remove(i)
+
 PATH = 'data/'
 
 train_count = 0
@@ -107,22 +113,6 @@ for cl in classes:
 
 print("total test images:", test_count)
 
-
-import numpy as np
-import cv2
-import pandas as pd
-import matplotlib.pyplot as plt
-
-import tensorflow as tf
-from tensorflow.keras.layers import *
-from tensorflow.keras.models import Model, Sequential
-import tensorflow.keras.backend as K
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras import regularizers
-from tensorflow.keras.regularizers import l1
-
-
 IMAGE_SIZE = [48, 48]
 epochs = 150
 BATCH_SIZE = 32
@@ -131,9 +121,10 @@ PATH = './data/'
 # Create the model
 model = Sequential()
 
-model.add(Conv2D(32, kernel_size=(3, 3), activation='relu',kernel_regularizer=regularizers.l2(0.0001),input_shape=(48,48,1)))
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.0001),
+                 input_shape=(48, 48, 1)))
 model.add(BatchNormalization())
-model.add(Conv2D(64, kernel_size=(3, 3), activation='relu',kernel_regularizer=regularizers.l2(0.0001)))
+model.add(Conv2D(64, kernel_size=(3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.0001)))
 model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Conv2D(128, kernel_size=(3, 3), activation='relu', kernel_regularizer=regularizers.l2(0.0001)))
@@ -157,38 +148,36 @@ model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['ac
 
 model.summary()
 
-val_datagen = ImageDataGenerator(rescale=1./255)
+val_datagen = ImageDataGenerator(rescale=1. / 255)
 
 train_datagen = ImageDataGenerator(
-      rescale=1./255,
-      rotation_range=30,
-      shear_range=0.3,
-      zoom_range=0.3,
-      horizontal_flip=True,
-      fill_mode='nearest')
+    rescale=1. / 255,
+    rotation_range=30,
+    shear_range=0.3,
+    zoom_range=0.3,
+    horizontal_flip=True,
+    fill_mode='nearest')
 
 train_generator = train_datagen.flow_from_directory(
-      os.path.join(PATH, "train"),
-      target_size=(48,48),
-      batch_size=BATCH_SIZE,
-      color_mode="grayscale",
-      class_mode='categorical')
+    os.path.join(PATH, "train"),
+    target_size=(48, 48),
+    batch_size=BATCH_SIZE,
+    color_mode="grayscale",
+    class_mode='categorical')
 
 val_generator = val_datagen.flow_from_directory(
-      os.path.join(PATH, "test"),
-      target_size=(48,48),
-      batch_size=BATCH_SIZE,
-      color_mode="grayscale",
-      class_mode='categorical')
-
-train_generator.class_indices
+    os.path.join(PATH, "test"),
+    target_size=(48, 48),
+    batch_size=BATCH_SIZE,
+    color_mode="grayscale",
+    class_mode='categorical')
 
 r = model.fit(
-  train_generator,
-  validation_data=val_generator,
-  epochs=epochs,
-  steps_per_epoch=train_count//BATCH_SIZE,
-  validation_steps=test_count//BATCH_SIZE
+    train_generator,
+    validation_data=val_generator,
+    epochs=epochs,
+    steps_per_epoch=train_count // BATCH_SIZE,
+    validation_steps=test_count // BATCH_SIZE
 )
 
 model.save("model.hdf5")
