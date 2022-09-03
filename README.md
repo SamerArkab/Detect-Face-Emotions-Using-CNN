@@ -5,4 +5,5 @@ While working on this project I got familiar with:
 - Training datasets.
 - The need for adjusting the dataset and how to do it, also about the layers used.
 - The Convolutional \ MaxPooling layers and how the data of the image is compiled in the finish process to form the output.
-- And more!
+
+** Need to revamp README
