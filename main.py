@@ -43,4 +43,6 @@ model = tf.keras.models.load_model('saved_models/model.hdf5')
 model.compile(metrics='accuracy')
 
 # Predict an example of emotion
-emotion_classification('examples/face.jpg', model)
+emotion_classification('examples/face1.jpg', model)
+emotion_classification('examples/face2.jpg', model)
+emotion_classification('examples/face3.jpg', model)
