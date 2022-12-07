@@ -15,7 +15,6 @@ Afterwards, we prepared the model using Keras library's:<br/>
 * Flatten() - Convert the array into one dimensional array.<br/>
 * Dense() - Which takes as input the dimensionality of the output space from every neuron of its preceding layer and an activation function (used ReLU), where neurons of the dense layer perform matrix-vector multiplication.<br/>
 * Dropout() - Is used to prevent the model training from overfitting! Dropout works by randomly setting the outgoing edges of hidden layers to 0 at each update of the training phase.<br/>
-<br/>
 Used the "categorical_crossentropy" loss function.
 
 #### Technologies
