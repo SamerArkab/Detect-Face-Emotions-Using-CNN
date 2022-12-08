@@ -23,6 +23,7 @@ Used the "categorical_crossentropy" loss function.
 * Matplotlib
 * Numpy
 * OpenCV package
+* Spyder IDE
 
 #### Example output
 ![image](./example_run/classify_emotion1.png)<br/>
