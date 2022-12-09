@@ -26,6 +26,4 @@ Afterwards, we prepared the model using Keras library's:<br/>
 * Spyder IDE
 
 #### Example output
-![image](./example_run/classify_emotion1.png)<br/>
-![image](./example_run/classify_emotion2.png)<br/>
-![image](./example_run/classify_emotion3.png)<br/>
+![image](./example_run/classify_emotion1.png) ![image](./example_run/classify_emotion2.png) ![image](./example_run/classify_emotion3.png)
