@@ -7,8 +7,8 @@
 
 #### General Info
 Deep Learning project, which I worked on in a group of 3 members during the semester.<br/>
-We trained our model on FER2013 dataset, which contains app. 30,000 facial images of 7 different facial expressions (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral). We divided most of the data for training use, and the rest for the testing part. <br/>
-Afterwards, we prepared the model using Keras library's:<br/> 
+The model was trained on FER2013 dataset, which contains app. 30,000 facial images of 7 different facial expressions (0=Angry, 1=Disgust, 2=Fear, 3=Happy, 4=Sad, 5=Surprise, 6=Neutral). Most of the data was divided training use, and the rest for the testing part. <br/>
+The model was prepared using Keras library:<br/> 
 * Conv2D() - 2D convolution layer which need as input the number of output filters in the convolution and their size, also the used activation function (normally ReLU) and regularizers.<br/>
 * BatchNormalization() - This method normalizes the contributions to a layer for every mini-batch by re-centering and re-scaling.<br/>
 * MaxPooling2D() - With a pool size of (2,2) matrices (which uses the max value).<br/>
